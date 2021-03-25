@@ -2,13 +2,27 @@ import React, { useContext } from "react";
 import Recipe from "./Recipe";
 import { RecipeContext } from "./App";
 
-export default function RecipeList({ recipes }) {
-  const { handleRecipeAdd } = useContext(RecipeContext)
+export default function RecipeList({  filteredRecipes }) {
+  const { handleRecipeAdd, handleRecipeSearchboxChange } = useContext(RecipeContext)
 
   return (
     <div className="recipe-list">
       <div>
-        {recipes.map((recipe) => {
+        <div className="recipe-list__searchbox">
+          <label
+            htmlFor="searchbox"
+            className="recipe-list__label">
+            Search Recipes
+          </label>
+          <input 
+            type="text"
+            name="searchbox"
+            id="searchbox"
+            className="recipe-list__input"
+            onChange={handleRecipeSearchboxChange}
+          />
+        </div>
+        {filteredRecipes.map((recipe) => {
           return (
             <Recipe key={recipe.id} {...recipe} />
           );

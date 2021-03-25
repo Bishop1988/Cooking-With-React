@@ -1,11 +1,39 @@
 .recipe-list {
-    border-right: 1px solid black;
-    min-height: 100vh;
-    width: 50%;
+  border-right: 1px solid black;
+  min-height: 100vh;
+  width: 50%;
 }
 
 .recipe-list__add-recipe-btn-container {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+.recipe-list__searchbox {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 10px;
+  column-gap: 40px;
+  padding-right: 40px;
+
+  overflow: hidden;
+  background-color: hsl(200, 100%, 50%);
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 50%; /* Half width */
+}
+
+.recipe-list__input {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: inherit;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  outline: none;
+  width: 100%;
+}
+
+.recipe-list__label {
+  font-weight: bold;
 }

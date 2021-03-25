@@ -10,6 +10,7 @@ const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes)
+  const [searchFeild, setSearchFeild] = useState("")
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
   useEffect(() => {
@@ -26,7 +27,18 @@ function App() {
     handleRecipeAdd,
     handleRecipeDelete,
     handleRecipeSelect,
-    handleRecipeChange
+    handleRecipeChange,
+    handleRecipeSearchboxChange // remember to pass this to the component
+  }
+
+  const filteredRecipes = recipes.filter((recipe) => { // this is my filtered list of recipe names
+    return (
+      recipe.name.toLowerCase().includes(searchFeild.toLowerCase())
+    )
+  })
+
+  function handleRecipeSearchboxChange(e) { // i need to pass this to the onChange prop of the input
+    setSearchFeild(e.target.value)
   }
 
   function handleRecipeSelect(id) {
@@ -63,7 +75,7 @@ function App() {
 
   return (
     <RecipeContext.Provider value={recipeContextValue}>
-      <RecipeList recipes={recipes} />
+      <RecipeList recipes={recipes} filteredRecipes={filteredRecipes} />
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   );
